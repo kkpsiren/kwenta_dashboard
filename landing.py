@@ -26,15 +26,23 @@ def get_change(ser,previous,what='NEW_ADDRESS'):
 def landing_page():
 
     st.sidebar.image("https://optimistic.etherscan.io/images/logo-ether.svg?v=0.0.4",width=300)
-    st.sidebar.title("Kwenta Analysis")
+    st.sidebar.title("kwenta_dashboard")
     
+    html = 'https://velocity-app.flipsidecrypto.com/velocity/visuals/a1f233b7-0b46-48bf-adb3-4ac7cab994fc/c4dc49ca-f8c5-48ad-b6dc-3e6657ffa908'
+    st.components.v1.iframe(html, width=900, height=800, scrolling=False)
+
+    html = 'https://velocity-app.flipsidecrypto.com/velocity/visuals/0ab89787-3159-4cc4-a312-625efcbb99b9/c4dc49ca-f8c5-48ad-b6dc-3e6657ffa908'
+    st.components.v1.iframe(html, width=900, height=800, scrolling=False)
+
+    html = 'https://velocity-app.flipsidecrypto.com/velocity/visuals/d0db04aa-ecff-4858-a0e9-1ff042242b87/c4dc49ca-f8c5-48ad-b6dc-3e6657ffa908'
+    st.components.v1.iframe(html, width=900, height=800, scrolling=False)
 
                      
     st.sidebar.write("""#### Powered by FlipsideCrypto Godmode and ShroomDK 🫡""")
 
     st.sidebar.markdown(f""" 
 ### 💻 Github
-[kkpsiren/optimism_bounty](https://github.com/kkpsiren/optimism_bounty)  
+[kkpsiren/kwenta_dashboard](https://github.com/kkpsiren/kwenta_dashboard)  
     """)
     with st.expander("Show queries"):
         st.markdown(f"""#### Query 1 for metrics
