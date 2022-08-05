@@ -88,4 +88,5 @@ def plot_history(df,
     symbol=None,)
     fig.update_yaxes(title_text=y.capitalize())
     fig.update_xaxes(title_text=x.capitalize())
+    fig.update_layout(height=300, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
     return fig

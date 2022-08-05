@@ -24,6 +24,7 @@ def get_change(ser,previous,what='NEW_ADDRESS'):
 
 
 def landing_page():
+    st.sidebar.image("https://static.wixstatic.com/media/7c96bd_25e85c48fc9a4b3f992a5f82f6b7a4cc~mv2.png/v1/fit/w_2500,h_1330,al_c/7c96bd_25e85c48fc9a4b3f992a5f82f6b7a4cc~mv2.png",width=300)
     st.sidebar.title("Kwenta Dashboard")
     st.sidebar.markdown("""
 With [Kwenta](https://kwenta.io/), you can trade commodities, forex, crypto, and more with up to 25x leverage and deep liquidity.  
@@ -40,11 +41,14 @@ The user must post some margin in order to open a futures account, and profits/l
 
     d0, d1,d2 = run_queries()
     d = load_historical(d2)
+    st.image('https://raw.githubusercontent.com/Kwenta/kwenta/55b9b19911885bb3dce0da21245988a3cebb92ed/assets/svg/brand/logo-dark.svg')
+    st.header('Look inside Kwenta')
+    st.write('Investigate overall flows or User Activity')
     layout_selected = st.radio('Select',['Overall','User'],horizontal=True)
     if layout_selected=='Overall':
 
         selected_flow_market = st.selectbox('Select Market', ['All']+d1['MARKET'].unique().tolist())
-        st.header(f'{selected_flow_market}')
+        st.subheader(f'{selected_flow_market}')
         if selected_flow_market=='All':
             
             st.subheader('Deposits vs Withdraws')
