@@ -132,8 +132,8 @@ from withdrawals d
 select ifnull(d.date,w.date) as date, ifnull(d.market,w.market) as market, 
   ifnull(deposit_summed,0) as deposits, 
   -1*ifnull(withdrawal_summed,0) as withdraws, 
-  (deposits-withdraws) as amount_in, 
-  sum(deposits-withdraws) over (partition by ifnull(d.market,w.market) order by ifnull(d.date,w.date)) as cumulative_sum
+  (deposits+withdraws) as amount_in, 
+  sum(deposits+withdraws) over (partition by ifnull(d.market,w.market) order by ifnull(d.date,w.date)) as cumulative_sum
 from user_deposit d
 full outer join user_withdrawal w on d.date=w.date and d.market=w.market
   
