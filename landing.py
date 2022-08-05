@@ -24,9 +24,20 @@ def get_change(ser,previous,what='NEW_ADDRESS'):
 
 
 def landing_page():
+    st.sidebar.title("Kwenta Dashboard")
+    st.sidebar.markdown("""
+With [Kwenta](https://kwenta.io/), you can trade commodities, forex, crypto, and more with up to 25x leverage and deep liquidity.  
+Essentially the liquidity comes from the Synthetix futures markets that enable users to a leveraged exposure to an asset, long or short.
+The user must post some margin in order to open a futures account, and profits/losses are
+ continually tallied against this margin. If a user's margin runs out, then their position is closed
+ by a liquidation keeper, which is rewarded with a flat fee extracted from the margin.
 
-    st.sidebar.image("https://optimistic.etherscan.io/images/logo-ether.svg?v=0.0.4",width=300)
-    st.sidebar.title("kwenta_dashboard")
+ The Synthetix debt pool is effectively the counterparty to each trade, so if a particular position
+ is in profit, then the debt pool pays by issuing sUSD into their margin account,
+ while if the position makes a loss then the debt pool burns sUSD from the margin, reducing the
+ debt load in the system.
+                     """)
+
     
     d = load_historical()
     d0, d1 = run_queries()
@@ -117,9 +128,11 @@ def landing_page():
 
     #html = 'https://velocity-app.flipsidecrypto.com/velocity/visuals/a1f233b7-0b46-48bf-adb3-4ac7cab994fc/c4dc49ca-f8c5-48ad-b6dc-3e6657ffa908'
     #st.components.v1.iframe(html, width=900, height=800, scrolling=False)
-                     
+                   
+    st.sidebar.markdown("""
+Text modified from Kwenta and Synthetix [Smart Contracts](https://github.com/Synthetixio/synthetix/blob/v2.75.2/contracts/FuturesMarket.sol)
+                        """)               
     st.sidebar.write("""#### Powered by FlipsideCrypto Godmode and ShroomDK 🫡""")
-
     st.sidebar.markdown(f""" 
 ### 💻 Github
 [kkpsiren/kwenta_dashboard](https://github.com/kkpsiren/kwenta_dashboard)  
