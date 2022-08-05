@@ -6,6 +6,7 @@ import time
 from queries import *
 import os
 import pandas as pd 
+from utils import trade_side_mapper
 
 #from dotenv import load_dotenv
 #load_dotenv()
@@ -71,3 +72,13 @@ def run_queries():
     #print('2 done')
     return df,df2
 
+st.cache()
+def load_historical(datapath = 'data/kwenta_trades.csv'):
+    d = pd.read_csv(datapath)
+
+    d['BLOCK_TIMESTAMP'] = pd.to_datetime(d['BLOCK_TIMESTAMP'])
+
+    d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']] = d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']].astype('float') / 1e18
+
+    d['SIDE'] = d['TRADESIZE'].apply(trade_side_mapper)
+    return d
