@@ -38,9 +38,8 @@ The user must post some margin in order to open a futures account, and profits/l
  debt load in the system.
                      """)
 
-    
-    d = load_historical()
-    d0, d1 = run_queries()
+    d0, d1,d2 = run_queries()
+    d = load_historical(d2)
     layout_selected = st.radio('Select',['Overall','User'],horizontal=True)
     if layout_selected=='Overall':
 

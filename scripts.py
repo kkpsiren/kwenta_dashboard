@@ -70,15 +70,24 @@ def run_queries():
     #print('1 done')
     df2 = bot.run(QUERY2)
     #print('2 done')
-    return df,df2
+    df3 = bot.run(QUERY3)
+    return df,df2,df3
 
-st.cache()
-def load_historical(datapath = 'data/kwenta_trades.csv'):
-    d = pd.read_csv(datapath)
 
+def modify_data(d):
+    d = d.copy()
     d['BLOCK_TIMESTAMP'] = pd.to_datetime(d['BLOCK_TIMESTAMP'])
-
     d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']] = d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']].astype('float') / 1e18
-
     d['SIDE'] = d['TRADESIZE'].apply(trade_side_mapper)
+    
     return d
+    
+st.cache()
+def load_historical(df,datapath = 'data/kwenta_trades.csv'):
+    d = pd.read_csv(datapath)
+    d = modify_data(d)
+    d = d[d['BLOCK_TIMESTAMP']<='2022-08-04']
+    
+    df = modify_data(df)
+    d = pd.concat([d,df],axis=0)
+    return d.sort_values('BLOCK_TIMESTAMP')
