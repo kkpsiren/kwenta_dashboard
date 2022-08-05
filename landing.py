@@ -138,11 +138,15 @@ Text modified from Kwenta and Synthetix [Smart Contracts](https://github.com/Syn
 [kkpsiren/kwenta_dashboard](https://github.com/kkpsiren/kwenta_dashboard)  
     """)
     with st.expander("Show queries"):
-        st.markdown(f"""#### Query 1 for metrics
+        st.markdown(f"""#### Query 1 for user deposit/withdrawal
 ```
 {QUERY}
 ```""")
-        st.markdown(f"""#### Query 2 for NFT specs" 
+        st.markdown(f"""#### Query 2 for daily deposit/withdrawal" 
 ```
 {QUERY2}
+```""")
+        st.markdown(f"""#### Query 3 for user trading activity" 
+```
+{QUERY3}
 ```""")
