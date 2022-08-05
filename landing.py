@@ -43,7 +43,7 @@ The user must post some margin in order to open a futures account, and profits/l
     d = load_historical(d2)
     st.image('https://raw.githubusercontent.com/Kwenta/kwenta/55b9b19911885bb3dce0da21245988a3cebb92ed/assets/svg/brand/logo-dark.svg')
     st.header('Look inside Kwenta')
-    st.write('Investigate overall flows or User Activity')
+    st.write('Investigate Overall Flows or User Activity')
     layout_selected = st.radio('Select',['Overall','User'],horizontal=True)
     if layout_selected=='Overall':
 
