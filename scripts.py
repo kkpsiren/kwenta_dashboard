@@ -76,12 +76,23 @@ def run_queries():
 
 def modify_data(d):
     d = d.copy()
+    d['SIZE'] = d['SIZE'].apply(short_changer)
+    d['TRADESIZE'] = d['TRADESIZE'].apply(short_changer)
+    # st.dataframe(d[d['TX_HASH']=='0x22343b8d3ed60a490690f2b7b91f01d5ce1a945808a486324468d8bae7aadd08'])
+
     d['BLOCK_TIMESTAMP'] = pd.to_datetime(d['BLOCK_TIMESTAMP'])
     d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']] = d[['MARGIN','SIZE','TRADESIZE','LASTPRICE']].astype('float') / 1e18
     d['SIDE'] = d['TRADESIZE'].apply(trade_side_mapper)
-    
+    # st.dataframe(d[d['TX_HASH']=='0x22343b8d3ed60a490690f2b7b91f01d5ce1a945808a486324468d8bae7aadd08'])
+
     return d
-    
+
+def short_changer(val):
+    if int(val) > 1e50:
+        return int(val) - 115792089237316195423570985008687907853269984665640564039457584007913129639936
+    else:
+        return int(val)
+
 st.cache()
 def load_historical(df,datapath = 'data/kwenta_trades.csv'):
     d = pd.read_csv(datapath)
@@ -90,4 +101,6 @@ def load_historical(df,datapath = 'data/kwenta_trades.csv'):
     
     df = modify_data(df)
     d = pd.concat([d,df],axis=0)
+    
+    # 115792089237316195423570985008687907853269984665640564039457584007913129639936
     return d.sort_values('BLOCK_TIMESTAMP')

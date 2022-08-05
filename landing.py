@@ -92,12 +92,11 @@ The user must post some margin in order to open a futures account, and profits/l
         with st.expander('Top Users'):
             st.dataframe(d0.style.background_gradient(cmap=cm))
         
-        
-        trader = st.selectbox('Trader',d0['ADDRESS'].unique().tolist(),index=1)
+        traders = list(set(d0['ADDRESS'].unique().tolist()+d['TRADER'].unique().tolist()))
+        trader = st.selectbox('Trader',traders,index=1)
         df_ = d.query('TRADER==@trader').copy()
         market = st.selectbox('Market',df_['MARKET'].unique().tolist())
         df = df_.query('MARKET==@market').copy()
-
 
         
         

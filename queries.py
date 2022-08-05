@@ -145,8 +145,8 @@ with transfers as (
   select block_timestamp, 
   origin_from_address as trader,
   tokenflow_eth.hextoint(substr(data,3,64)) as margin,
-  tokenflow_eth.hextoint(substr(data,67,64)) as size, 
-  tokenflow_eth.hextoint(substr(data,131,64)) as tradeSize, 
+  ethereum.public.udf_hex_to_int(substr(data,67,64)) as size, 
+  ethereum.public.udf_hex_to_int(substr(data,131,64)) as tradeSize, 
   tokenflow_eth.hextoint(substr(data,195,64)) as lastPrice, 
   tokenflow_eth.hextoint(substr(data,259,64)) as fundingIndex,
   case
